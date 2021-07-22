@@ -48,4 +48,5 @@ foreach ($subscription in $subscriptions) {
     }
 }
 
-
+$lowUsageVMs | Format-Table
+$shoudBeReservedVMs | Format-Table
