@@ -1,3 +1,6 @@
+# Log usage disks (IOPS usage <= 40%) should be resized (Premium -> Std, Std -> Hdd).
+
+
 # Replace with your tenantId
 $tenantId = "7c416a2f-a987-4337-bb0a-94e57c1f32e7"
 Connect-AzAccount -TenantId $tenantId
