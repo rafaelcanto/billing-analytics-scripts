@@ -1,6 +1,14 @@
 
+# Replace with your tenantId
+$tenantId = "7c416a2f-a987-4337-bb0a-94e57c1f32e7"
+Connect-AzAccount -TenantId $tenantId
+$subscriptions = Get-AzSubscription | Where-Object { $_.TenantId -eq $tenantId }
 
-function Get-VMDataDiskIoUsage {
+# Time range
+$startDate = (Get-Date).AddDays(-30)
+$endDate = Get-Date
+
+function Get-ServicePlanUsage {
 
     param ($resourceId)     
 
@@ -20,7 +28,7 @@ foreach ($subscription in $subscriptions) {
     
     
     foreach ($servicePlan in $servicePlans) {
-        $isCpuHighUsage = Get-VMOSDiskIoUsage -resourceId $servicePlan.Id;
+        $isCpuHighUsage = Get-ServicePlanUsage -resourceId $servicePlan.Id;
 
         if ($isCpuHighUsage -eq $false) {
             Write-Host "Found! "$vm.name
