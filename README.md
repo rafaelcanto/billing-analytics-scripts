@@ -8,18 +8,18 @@
 - Reservas
 
 ## Compute
-- VMs com pouca utilização (CPU < 40%). 
+- [x] VMs com pouca utilização (CPU < 40%). 
 
 - VMs com SKU legado (D3S_V3, A_, etc)
 Encontre VMs com SKU antigo:
 https://docs.microsoft.com/en-us/azure/virtual-machines/sizes-previous-gen
 
-- Reserve máquinas de produção
+- [x] Reserve máquinas de produção
 
 - Reserve discos de produção
-* Buscar discos maiores que P30 (1TB)
+- [x] Buscar discos maiores que P30 (1TB)
 
-- Escale os service plans com pouca utilização (CPU < 40%)
+- [x] Escale os service plans com pouca utilização (CPU < 40%)
 
 - Utilize licencas no formato BYOL - SEMPRE
 
@@ -30,8 +30,8 @@ Analise as métricas ou billing (Data stored > RW Operations)
 - Mova discos pouco utilizados para HDD ou STD SSD
 *Encontrar discos com poucos IOPS (az monitor metric)
 
-- Apague discos orfãos
-Query básica de recursos
+- [x] Apague discos orfãos
+
 
 
 ## Dev Policies

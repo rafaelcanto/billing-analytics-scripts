@@ -13,4 +13,7 @@ foreach ($subscription in $subscriptions) {
     $orphanedDisks += $disks
 }
 
-$orphanedDisks | Format-Table Id
+
+Write-Host "Disks without attachment (should be deleted)"
+Write-Host "------------------------------"
+$orphanedDisks | Format-Table

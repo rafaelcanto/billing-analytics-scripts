@@ -2,7 +2,7 @@
 
 
 # Replace with your tenantId
-$tenantId = "7c416a2f-a987-4337-bb0a-94e57c1f32e7"
+$tenantId = "1236ea7e-8bbc-43a5-a5ee-189a1954e314"
 Connect-AzAccount -TenantId $tenantId
 $subscriptions = Get-AzSubscription | Where-Object { $_.TenantId -eq $tenantId }
 
@@ -31,10 +31,10 @@ function Get-VMDataDiskIoUsage {
 }
 
 
-$lowUsageVMs = New-Object Collections.Generic.List[object]
-$shoudBeReservedVMs = New-Object Collections.Generic.List[object]
+$lowUsageVmOsDisks = New-Object Collections.Generic.List[object]
+$lowUsageVmDataDisks = New-Object Collections.Generic.List[object]
 
-$subscriptions = Get-AzSubscription | Where-Object { $_.TenantId -eq "7c416a2f-a987-4337-bb0a-94e57c1f32e7" }
+$subscriptions = Get-AzSubscription | Where-Object { $_.TenantId -eq $tenantId }
 
 foreach ($subscription in $subscriptions) {
     Write-Host "Getting recommendations for "$subscription.name
@@ -46,15 +46,20 @@ foreach ($subscription in $subscriptions) {
         $isDataHighUsage = Get-VMDataDiskIoUsage -resourceId $vm.Id;
         if ($isOsHighUsage -eq $false) {
             Write-Host "Found! "$vm.name
-            $lowUsageVMs.Add($vm)
+            $lowUsageVmOsDisks.Add($vm)
         }
 
         if ($isDataHighUsage -eq $true) {
             Write-Host "Found! "$vm.name
-            $shoudBeReservedVMs.Add($vm)
+            $lowUsageVmDataDisks.Add($vm)
         }
     }
 }
 
-$lowUsageVMs | Format-Table
-$shoudBeReservedVMs | Format-Table
+Write-Host "VMs with low usage OS disk"
+Write-Host "------------------------------"
+$lowUsageVmOsDisks | Format-Table
+
+Write-Host "VMs with low usage Data disks"
+Write-Host "------------------------------"
+$lowUsageVmDataDisks | Format-Table

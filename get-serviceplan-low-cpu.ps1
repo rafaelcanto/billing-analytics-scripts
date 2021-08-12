@@ -32,10 +32,12 @@ foreach ($subscription in $subscriptions) {
         $isCpuHighUsage = Get-ServicePlanUsage -resourceId $servicePlan.Id;
 
         if ($isCpuHighUsage -eq $false) {
-            Write-Host "Found! "$vm.name
-            $lowUsageServicePlans.Add($vm)
+            Write-Host "Found! "$servicePlan.name
+            $lowUsageServicePlans.Add($servicePlan)
         }
     }
 }
 
+Write-Host "Low CPU usage Service Plans (should be resized)"
+Write-Host "------------------------------"
 $lowUsageServicePlans | Format-Table

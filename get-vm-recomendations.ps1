@@ -1,3 +1,5 @@
+# VM with low CPU usage should be resized.
+
 # Replace with your tenantId
 $tenantId = "7c416a2f-a987-4337-bb0a-94e57c1f32e7"
 Connect-AzAccount -TenantId $tenantId
@@ -49,5 +51,10 @@ foreach ($subscription in $subscriptions) {
 }
 
 
+Write-Host "Low CPU usage VMs (should be resized)"
+Write-Host "-----------------------------"
 $lowUsageVMs | Format-Table
+
+Write-Host "High usage time VMs (should be reserved)"
+Write-Host "-----------------------------"
 $shoudBeReservedVMs | Format-Table
