@@ -2,7 +2,7 @@
 
 
 # Replace with your tenantId
-$tenantId = "1236ea7e-8bbc-43a5-a5ee-189a1954e314"
+$tenantId = "a680bede-9e00-4d2c-a1f0-8df2bea6b6f6"
 Connect-AzAccount -TenantId $tenantId
 $subscriptions = Get-AzSubscription | Where-Object { $_.TenantId -eq $tenantId }
 

@@ -1,7 +1,7 @@
 # Service Plans with low CPU usage should be resized.
 
 # Replace with your tenantId
-$tenantId = "7c416a2f-a987-4337-bb0a-94e57c1f32e7"
+$tenantId = "a680bede-9e00-4d2c-a1f0-8df2bea6b6f6"
 Connect-AzAccount -TenantId $tenantId
 $subscriptions = Get-AzSubscription | Where-Object { $_.TenantId -eq $tenantId }
 
@@ -20,7 +20,7 @@ function Get-ServicePlanUsage {
 
 $lowUsageServicePlans = New-Object Collections.Generic.List[object]
 
-$subscriptions = Get-AzSubscription | Where-Object { $_.TenantId -eq "7c416a2f-a987-4337-bb0a-94e57c1f32e7" }
+$subscriptions = Get-AzSubscription | Where-Object { $_.TenantId -eq "a680bede-9e00-4d2c-a1f0-8df2bea6b6f6" }
 
 foreach ($subscription in $subscriptions) {
     Write-Host "Getting recommendations for "$subscription.name
